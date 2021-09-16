@@ -1,0 +1,17 @@
+@inject IThemer themer
+@{
+    string selectedTheme = Context.Request.Query["theme"];
+    var themes = themer.GetThemeNames().ToList();
+    if (themes.Contains(selectedTheme)) {
+        themer.ChangeTheme(selectedTheme);
+    }
+
+    var themeNames = themes.Select(name => new SelectListItem(name, name, selected: name == themer.CurrentThemeName));
+}
+<p>
+    <form method="get">
+        <label>Select a theme:</label>
+        <select asp-items="@themeNames" name="theme" onchange="this.form.submit()"></select>
+        <p><strong>NOTE: This is not actually working since the razor view engine uses an internal cache. See this: <a href="https://stackoverflow.com/questions/47313612/how-to-change-create-custom-fileprovider-in-net-core-thats-domain-dependant-i">https://stackoverflow.com/questions/47313612/how-to-change-create-custom-fileprovider-in-net-core-thats-domain-dependant-i</a></strong></p>
+    </form>
+</p>

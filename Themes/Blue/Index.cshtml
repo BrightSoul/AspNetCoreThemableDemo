@@ -1,0 +1,11 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page1";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Themable demo</h1>
+    <p>Razor views are placed in the /Themes directory and are updatable at runtime. If a view is not found, the file provider falls back to the /Pages directory.</p>
+    <partial name="ThemeSelector"></partial>
+</div>
